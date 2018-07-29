@@ -1,7 +1,6 @@
 # Webpack-npm-learning
 
-npm学习
----
+## npm学习
 1. 初始化项目 `npm init -y`
 2. 安装依赖 
     1. 项目为空项目：`npm install <name>@<version>` ：
@@ -9,8 +8,7 @@ npm学习
     2. 项目为以有项目：项目描述在 `package.json` 中，只需要执行命令 `npm install` 即可安装
 3. 升级依赖 `npm update` 
 
-webpack学习
----
+## webpack学习
 1. 为每个项目使用一个webpack：`npm install webpack --save-dev` 或者 `npm i webpack -D`
 2. 安装 `webpack-cli` 同上。
 3. 自定义命令：
@@ -84,3 +82,28 @@ webpack学习
                 `<h1>暂不接受入坑</h1>`
         }
         ```
+7. 监听文件变化编译
+    * 使用 `"build": "node_modules/.bin/webpack -p --watch"` 加个参数即可
+8. loader加载器
+    * 目的：解决不同类型文件的加载，如.css文件，.json文件等
+    * 使用方法：
+        1. 安装 `npm install style-loader css-loader -D` 等加载器
+        2. 在webpack.config.js中加入 `module` 匹配规则
+            ```javascript
+            module.exports = {
+                entry:'./js/index',
+                output:{
+                    filename:'bundle.js'
+                },
+                module:{
+                    rules:[
+                        {
+                            //正则表达式匹配规则
+                            test: /\.css$/,
+                            //注意顺序的正确性
+                            use:['style-loader', 'css-loader']
+                        }
+                    ]
+                }
+            };
+            ```
