@@ -63,3 +63,5 @@ typings/
 #WebStorm
 .idea/
 *.iml
+
+dist/

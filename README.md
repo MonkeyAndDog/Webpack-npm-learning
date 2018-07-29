@@ -38,3 +38,49 @@ webpack学习
             }   
         };
         ```
+5. 多文件生成
+    ```javascript
+    module.exports = {
+        entry: {
+            //首页入口
+            home:'./js/home.js',
+            //注册页入口
+            reg:'./js/reg.js'
+        },
+        //动态生成文件名——使用[name]属性，与上面相对应
+        output: {
+            filename:'[name].bundle.js',
+        }
+    };
+    ```
+6. 使用ES6写法写出口和入口
+    * 出口
+        ```javascript
+        var open = false;
+        
+        //ES6写法
+        export {open};
+        
+        //node写法
+        // module.exports = {
+        //     open:open
+        // };
+        ```
+    * 入口
+        ```javascript
+        //ES6写法
+        import {open} from './base';
+        
+        //node写法
+        // var base = require('./base');
+        //
+        // var open = base.open;
+        
+        if (open) {
+            document.body.innerHTML =
+                `<h1>欢迎入坑</h1>`
+        } else {
+            document.body.innerHTML =
+                `<h1>暂不接受入坑</h1>`
+        }
+        ```
